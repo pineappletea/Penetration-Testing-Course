@@ -57,4 +57,6 @@ Decoding again with BASE64 gave me the invite code to create an account!
 
 ## c) Solve Webgoat tasks "HTTP Basics", "Developer tools", "CIA Triad" and "A1 Injection (intro)"
 
-## d) Install Kali Linux into a virtual machine. Try an included tool into a localhost-adress.
+## d) Install Kali Linux into a virtual machine. Try an included tool on a localhost adress.
+
+![kali screenshot](/kali.png)
