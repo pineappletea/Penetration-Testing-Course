@@ -7,7 +7,7 @@ The console gave the next instructions "This page loads an interesting javascrip
 
 The debugger displayed the file with the comment "This javascript code looks strange...is it obfuscated???"
 
-Pasting the code into a [deobfuscator](https://lelinhtinh.github.io/de4js/) lead to this legible code
+Pasting the code into a [deobfuscator](https://lelinhtinh.github.io/de4js/) lead to this readable code
 
 ```
 function makeInviteCode() {
@@ -40,7 +40,7 @@ I used Postman to send the request and received the response
 
 Decoding with BASE64 resulted in "In order to generate the invite code, make a POST request to /api/invite/generate". I sent the POST request to the new address and received response:
 
-´´´
+```
 {
     "success": 1,
     "data": {
