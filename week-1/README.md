@@ -59,4 +59,6 @@ Decoding again with BASE64 gave me the invite code to create an account!
 
 ## d) Install Kali Linux into a virtual machine. Try an included tool on a localhost adress.
 
-![kali screenshot](/kali.png)
+Installed with Oracle VM virtual box on Windows 10 host.
+
+![kali screenshot](/week-1/kali.png)
