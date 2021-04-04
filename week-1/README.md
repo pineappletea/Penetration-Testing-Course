@@ -55,7 +55,26 @@ Decoding again with BASE64 gave me the invite code to create an account!
 
 ## b) Install Webgoat
 
+Installed into the Kali virtual machine.
+
+![webgoat screenshot](/week-1/webgoat-ss.png)
+
 ## c) Solve Webgoat tasks "HTTP Basics", "Developer tools", "CIA Triad" and "A1 Injection (intro)"
+
+### HTTP Basics
+This task requires the use of OWASP ZAP, which comes installed with Kali. Looking at the tool i ran into its HUD function. Wasn't sure i quite needed it yet but it seemed cool so I completed the tutorial.
+
+![ZAP-HUD](/week-1/ZAP-HUD.png)
+
+I used the history page of the ZAP HUD to look up the post request contents, which gave me the "magic number"...
+
+![zap-post](/week-1/zap-post.png)
+
+... and allowed me to complete the assignment!
+
+![http-completed](/week-1/http-completed.png)
+
+
 
 ## d) Install Kali Linux into a virtual machine. Try an included tool on a localhost adress.
 
