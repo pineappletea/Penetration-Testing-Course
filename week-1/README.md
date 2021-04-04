@@ -61,8 +61,11 @@ Installed into the Kali virtual machine.
 
 ## c) Solve Webgoat tasks "HTTP Basics", "Developer tools", "CIA Triad" and "A1 Injection (intro)"
 
+WebGoat recommends that it only be used disconnected from the internet. To bring the Kali virtualbox offline I used the terminal command `$ nmcli networking off`
+
 ### HTTP Basics
-This task requires the use of OWASP ZAP, which comes installed with Kali. Looking at the tool i ran into its HUD function. Wasn't sure i quite needed it yet but it seemed cool so I completed the tutorial.
+
+This task gave the tip that completing it requires the use of OWASP ZAP, which comes installed with Kali. Looking at the tool I ran into its HUD function. Wasn't sure I quite needed it yet but it seemed cool so I completed the tutorial.
 
 ![ZAP-HUD](/week-1/ZAP-HUD.png)
 
@@ -74,10 +77,24 @@ I used the history page of the ZAP HUD to look up the post request contents, whi
 
 ![http-completed](/week-1/http-completed.png)
 
+### Developer tools
 
+### CIA Triad
+
+### A1 Injection (intro)
 
 ## d) Install Kali Linux into a virtual machine. Try an included tool on a localhost adress.
 
 Installed with Oracle VM virtual box on Windows 10 host.
 
 ![kali screenshot](/week-1/kali.png)
+
+
+## Sources
+
+https://terokarvinen.com/2020/install-webgoat-web-pentest-practice-target/
+
+https://tools.kali.org/web-applications/zaproxy
+
+https://askubuntu.com/questions/434660/how-can-i-disable-my-internet-connection-from-terminal
+
