@@ -61,11 +61,11 @@ Installed into the Kali virtual machine.
 
 ## c) Solve Webgoat tasks "HTTP Basics", "Developer tools", "CIA Triad" and "A1 Injection (intro)"
 
-WebGoat recommends that it only be used disconnected from the internet. To bring the Kali virtualbox offline I used the terminal command `$ nmcli networking off`
+WebGoat recommends that it only be used disconnected from the internet. To bring the Kali virtual box offline I used the terminal command `$ nmcli networking off`
 
 ### HTTP Basics
 
-This task gave the tip that completing it requires the use of OWASP ZAP, which comes installed with Kali. Looking at the tool I ran into its HUD function. Wasn't sure I quite needed it yet but it seemed cool so I completed the tutorial.
+This task gave the tip to use OWASP ZAP, which comes installed with Kali. Looking at the tool I ran into its HUD function. Wasn't sure I quite needed it yet but it seemed cool so I completed the tutorial.
 
 ![ZAP-HUD](/week-1/ZAP-HUD.png)
 
@@ -79,11 +79,19 @@ I used the history page of the ZAP HUD to look up the post request contents, whi
 
 ### Developer tools
 
+In this introduction to developer tools completion required me to look up the contents of an HTTP request and fill it in.
+
+![developer-tools-completed](/week-1/devtools-completed.png)
+
 ### CIA Triad
+
+This assignment included learning about the CIA Triad model for information security and taking a quiz.
+
+![quiz-done](/week-1/CIA-quiz-done.png)
 
 ### A1 Injection (intro)
 
-## d) Install Kali Linux into a virtual machine. Try an included tool on a localhost adress.
+## d) Install Kali Linux into a virtual machine. Try an included tool on a localhost address.
 
 Installed with Oracle VM virtual box on Windows 10 host.
 
