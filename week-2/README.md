@@ -87,6 +87,7 @@
 
 ### Reconnaissance
 passive: company webpage, linkedIn, financial records, search engines
+
 active: port scanning, banner grabbing, service detection scans
 
 ### Weaponization
@@ -106,6 +107,8 @@ shell, privilege escalation, cracking downloaded password hashes
 
 ### Actions on objectives
 metasploits downloading, shutting down functions, spreading misinformation, recording meetings with webcam
+
+I used metasploit and nmap in the next exercise.
 
 ## b) Install Metaspoitable 2. Break in in multiple ways.
 
@@ -195,7 +198,7 @@ There is an auxiliary module scanner/http/tomcat_mgr_login. It looks like its go
 
 Really exciting to watch it work. We have our credentials!
 
-![Tomcat exploit failed](/week-2/tomcat-login.png)
+![Tomcat credentials](/week-2/tomcat-creds.png)
 
 `use 6`
 `set HttpPassword tomcat`
