@@ -83,7 +83,7 @@
 
 
 
-## a) List tools and techniques phase of the Lockheed Martin Cyber Kill Chain, atleast one for each phase. Try 1-3 of the tools.
+## a) List tools and techniques for the phases of the Lockheed Martin Cyber Kill Chain, atleast one for each phase. Try 1-3 of the tools.
 
 ### Reconnaissance
 passive: company webpage, linkedIn, financial records, search engines
@@ -263,12 +263,19 @@ I follow the above mentioned guides way of privilege escalation.
 ## Sources
 
 https://subscription.packtpub.com/book/networking_and_servers/9781788623179/1/ch01lvl1sec19/configuring-postgresql
+
 https://learning.oreilly.com/library/view/mastering-metasploit-/9781838980078/B15076_01_Final_ASB_ePub.xhtml#_idParaDest-30
+
 https://www.cvedetails.com/vulnerability-list/vendor_id-9520/product_id-16873/version_id-99593/Proftpd-Proftpd-1.3.1.html
+
 https://pentestlab.blog/2012/03/22/apache-tomcat-exploitation/
+
 https://null-byte.wonderhowto.com/how-to/hack-apache-tomcat-via-malicious-war-file-upload-0202593/
+
 https://emaragkos.gr/recommended-machines/
+
 https://medium.com/egghunter/toppo-1-vulnhub-walkthrough-c5f05358cf7d
+
 https://linuxconfig.org/ssh-password-testing-with-hydra-on-kali-linux
 
 
