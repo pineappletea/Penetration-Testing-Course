@@ -149,7 +149,7 @@ To read more, `info 4`. Turns out version isnt right after all. Going through al
 
 Looking at the info for the exploit, default port setting 21 is correct. There is no checking module so Im just going for it.
 
-`use 0`
+`use 0`sd
 
 `set RHOST 192.168.56.101`
 
@@ -219,7 +219,25 @@ Works!
 
 ## c) Install a machine from VulnHub. Break in.
 
+Chose Toppo: 1 as the target machine, it was one of the ones recommended for beginners.
 
+Created virtualbox and installed the vdmk. Machine just shows its IP 192.168.56.103
+
+`msf6 > workspace -a toppo`
+
+Lets start again with a portscan.
+
+![Toppo nmap results](/week-2/toppo-nmap.png)
+
+I open up the webpage and find a blog, that looks like its made from a template with minimal edits.
+
+![Blog](/week-2/blog.png)
+
+Opened another terminal and `owasp-zap`, used the automated attack tool. 
+
+![Zap results](/week-2/zap.png)
+
+The jquery and boostrap versions used by the site are old and there is comments containing some code. 
 
 ## Sources
 
@@ -228,4 +246,6 @@ https://learning.oreilly.com/library/view/mastering-metasploit-/9781838980078/B1
 https://www.cvedetails.com/vulnerability-list/vendor_id-9520/product_id-16873/version_id-99593/Proftpd-Proftpd-1.3.1.html
 https://pentestlab.blog/2012/03/22/apache-tomcat-exploitation/
 https://null-byte.wonderhowto.com/how-to/hack-apache-tomcat-via-malicious-war-file-upload-0202593/
+https://emaragkos.gr/recommended-machines/
+
 
