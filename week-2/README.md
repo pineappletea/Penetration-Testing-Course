@@ -221,7 +221,7 @@ Works!
 
 Chose Toppo: 1 as the target machine, it was one of the ones recommended for beginners.
 
-Created virtualbox and installed the vdmk. Machine just shows its IP 192.168.56.103
+Created virtualbox and installed the vdmk. Machine just shows its IP 192.168.56.103 and a login.
 
 `msf6 > workspace -a toppo`
 
@@ -237,7 +237,28 @@ Opened another terminal and `owasp-zap`, used the automated attack tool.
 
 ![Zap results](/week-2/zap.png)
 
-The jquery and boostrap versions used by the site are old and there is comments containing some code. 
+The jquery and boostrap versions used by the site are old and there is comments containing some code.
+
+I try to make sense of the jquery code to see if theres some vulnerability, but nothing jumps out at me, and I dont actually know jquery library. It also feels like who ever imaginary person set up this site didnt write the js code. I feel stuck and like im missing something obvious, look at a [guide](https://medium.com/egghunter/toppo-1-vulnhub-walkthrough-c5f05358cf7d) to find some next step to take. 
+
+`dirb http://192.168.56.103`
+
+While its running, I notice this.
+
+![Admin is listable](/week-2/admin-listable.png)
+
+So i just open the /admin/ page in browser and find this notes.txt
+
+![notes with password](/week-2/notes.png)
+
+So we have our password, 12345ted123. I tried manually logging in with the password as users root, debian, admin and ted. Ted works!
+
+![SSH as ted](/week-2/ssh-ted.png)
+
+I follow the above mentioned guides way of privilege escalation.
+
+![Privilege escalation to root with python](/week-2/priv-escalation.png)
+
 
 ## Sources
 
@@ -247,5 +268,7 @@ https://www.cvedetails.com/vulnerability-list/vendor_id-9520/product_id-16873/ve
 https://pentestlab.blog/2012/03/22/apache-tomcat-exploitation/
 https://null-byte.wonderhowto.com/how-to/hack-apache-tomcat-via-malicious-war-file-upload-0202593/
 https://emaragkos.gr/recommended-machines/
+https://medium.com/egghunter/toppo-1-vulnhub-walkthrough-c5f05358cf7d
+https://linuxconfig.org/ssh-password-testing-with-hydra-on-kali-linux
 
 
