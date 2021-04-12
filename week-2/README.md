@@ -149,7 +149,7 @@ To read more, `info 4`. Turns out version isnt right after all. Going through al
 
 Looking at the info for the exploit, default port setting 21 is correct. There is no checking module so Im just going for it.
 
-`use 0`sd
+`use 0`
 
 `set RHOST 192.168.56.101`
 
