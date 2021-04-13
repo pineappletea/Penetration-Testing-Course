@@ -262,6 +262,8 @@ I follow the above mentioned guides way of privilege escalation.
 
 ## Sources
 
+https://terokarvinen.com/2021/hakkerointi-kurssi-tunkeutumistestaus-ict4tn027-3005/
+
 https://subscription.packtpub.com/book/networking_and_servers/9781788623179/1/ch01lvl1sec19/configuring-postgresql
 
 https://learning.oreilly.com/library/view/mastering-metasploit-/9781838980078/B15076_01_Final_ASB_ePub.xhtml#_idParaDest-30
