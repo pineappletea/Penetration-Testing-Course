@@ -280,4 +280,5 @@ https://medium.com/egghunter/toppo-1-vulnhub-walkthrough-c5f05358cf7d
 
 https://linuxconfig.org/ssh-password-testing-with-hydra-on-kali-linux
 
+https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf
 
