@@ -48,7 +48,6 @@ What to do about the social engineering exploits, defense:
 - if uncertain, ask for help from others
 
 ### [OWASP 10 2017](https://raw.githubusercontent.com/OWASP/Top10/master/2017/OWASP%20Top%2010-2017%20(en).pdf)
-Kustakin hyökkäyksestä 3-5
 
 ## A1 Injection
 - works when input data isn't validated, filtered or sanitized
@@ -64,20 +63,127 @@ Kustakin hyökkäyksestä 3-5
 
 ## A3 Sensitive Data Exposure
 - a manual attack that steals sensitive information
-- data is either unencrypted or the encryption method has a weakness
-- 
+- data is either unencrypted or the encryption method has a weakness and can be easily broken
+- look at what kind of data is being transmitted: is there plain text or poor encryption?
+
 ## A7 Cross Site Scripting
+- execute HTML and Javascript in the victims browser to gather sensitive information(credit card information, session IDs)
+- types: Reflected(code execution in browser, fe. by link containing form), Stored(storing javascript on a site to be ran by visitors), DOM 
+- there are automatic attack tools to exploit XSS
+- some frameworks prevent this by design: react js, ruby on rails
 
 
 ### [Santos et al 2018: Hacking Web Applications The Art of Hacking Series LiveLessons (video): Security Penetration Testing for Today's DevOps and Cloud Environments: Lesson 5: Authentication and Session Management Vulnerabilities](https://learning.oreilly.com/videos/hacking-web-applications/9780135261422/9780135261422-hwap_01_05_02_00)
 
+#### Understanding Auth schemes
+- Authentication and session management as targets
+- Authentication: determine that the user is who he claims to be(username + password)
+- Session management: remembering how to treat a client, sessionID
+- SSL/TLS: confidentiality, mutual authentication. Digital certificates.
+    - Certificate is a document containing public key and the provider vouching for content. Managed by Certificate Authorities, signed.
+    - 1-way: client reads servers certificate
+    - 2-way: server also requests a certificate from client
+- HTTP Basic Auth
+    - no cookies, headers
+    - browser caches credentials and transmitted in clear text
+    - client needs to secure the transactions itself
+    - plain text transfer is insecure
+- HTTP Form-based Auth
+    - common
+    - specific form where credentials are taken
+- DAA Digest Access Authentication
+    - only a hash is sent to server
+    - not secure, because of collision attacks and MD5 hashing is weak
+- LTPA
+    - has to use another authentication technique
+    - uses a cookie
+- OAuth2
+    - auth is provided by a third party, there is a redirect URI from auther back to app
+    - access tokens in HTTP header
+    - user credentials not exposed to app, only the token with an expiry
+    - if tokens do not expire, these are a vulnerability
+    - uses TLS
+- Open ID
+    - authentication by provider(google, yahoo)
+    - site that uses this method is the "relaying party"
+    - Attribute Exchange Extention provides information like Name and gender to relaying party
+- SAML
+    - similar to Open Id
+
+- OAuth 2 often used with SAML or Open Id
+
+#### Session management mechanisms
+
+- web applications use sessions to keep track of users
+- can be used before and after authentication
+- sessionID/token exchanged between client and server
+- fingerprinting: session ID shows the used framework (fe. JSESSIONID -> java application)
+- default fingerprint should be changed to something generic
+- session IDs should be long(16 bytes), unpredictable and unique, include good randomness
+- session ID used in the URL is unsecure, can be used in session fixation attacks
+- frameworks provide session management features that should be used instead of creating your own
+- attacker should study how session ids are exchanged
+- web applications should use encryption
+- many web apps only encrypt a part of the communication
+- session cookies vs persistent cookies (expiry time)
+- session IDs must be validated
+- if ids are not validated, may leave the door open for SQL injection and XSS
+
+
 ### [Percival & Samancioglu 2020: The Complete Ethical Hacking Course (video): Chapter 21: Cross Site Scripting](https://learning.oreilly.com/videos/the-complete-ethical/9781839210495/9781839210495-video21_1)
 
 
-## a) Find a case of an intrusion into a company using social engineering. Analyze the case based on Riku's teachings. Were there alternative or better available avenues of attack? How couldve the attacks been prevented, detected or their impacts limited?
+#### Reflected XSS
+
+- Injecting Javascript into client browser
+- use ```<script> </script>``` tags in a form to run javascript
+- you can create a link that includes javascript as form input, anyone clicking the link will also execute the code in browser
+- proper configuration prevents running the script
+
+#### Stored XSS
+
+- when web app stores user inputs and shows them to other users
+- attacker stores script, it gets run by the browser of the victim that visits the site
+
+#### Real hacking with XSS
+
+- Beef tool on Kali
+- creates a hook script that allows the attacker to send javascript to the visiting victim
+- character limits in forms can be bypassed by editing the page, increasing character limit
+
+#### How to protect yourself
+
+- stay away from untrusted websites
+- turn off javascript before visiting an untrusted website
+- under content settings in chrome
+- you can create block and allow exceptions for javascript in browser settings
+
+
+## a) Find a case of an intrusion into a company using social engineering. Analyze the case based on Riku's teachings. Were there alternative or better available avenues of attack? How could've the attacks been prevented, detected or their impacts limited?
+
+### [Toyota 2019](https://www.cpomagazine.com/cyber-security/toyota-subsidiary-loses-37-million-due-to-bec-scam/)
+
+This was a BEC(Business email compromise) attack. Hacker posed as a business partner and requested funds to be transferred to his account. Because of the size of the company, the 37 million US wasn't "an outlandishly large figure". Similar attacks had already been attempted against other branches of the company, and so it can be assumed that the companies infrastructure is compromised.
+
+*Riku's teachings. **Pretexting**: The attacker had done his research about the organization and figured out the right people to target with his scam. He had constructed a believable back story for his actions. He was able to weigh the risk vs reward of requesting a large sum, in the context of the business of the company. The emails had also been spoofed as coming from a someone that the target already knew.*
+
+***Authority as principle of persuasion**: While theres no details as to who exactly the attacker was posing as, he probably assumed a position of authority, as in either an important business partner or an executive in the company. Riku also mentioned during his lecture that the power of authority is often tied to culture, and japan has a very authoritative culture. This was the EU subsidiary of the company, so japanese people may not have actually been involved, but it wouldn't surprise me if the company had a very authoritative culture, springing from its roots in japanese culture.*
+
+*The fact that similar attacks had already been detected against other branches of the company also suggests that there was a problem with communication in the company. Perhaps the person that fell for the scam could've been warned about the attacks, but wasn't because someone somewhere determined that "this could never work against us, were smarter than this". Or the targeted person was hesitant, but decided not to ask a superior/college in order to "save face". These are just guesses but spring from the thought of an authoritative corporate culture*
+
+*It seems to me that the best way to prevent something like this is to have a better system around the way the company makes its payments. There should've at least been several sets of eyes to check the transaction before it went through. There could also be a requirement to connect a payment to some kind of change in inventory or another asset, like "this paid for these parts we received".*
 
 
 ## b) Riku's citations. Present 3-5 key lessons from one of Riku's sources.
+
+### [Reuser’s reporterium](http://rr.reuser.biz/)
+
+The Open Source Intelligence resource discovery toolkit
+
+- There is an amazing number of search engines, directories, indexes etc. resources for different purposes
+- many search engines take common operators (fe. AND, OR, NOT) which you can use to improve search results
+- there are serial search engines that run a search in multiple engines in succession (using several engines is recommended to improve results)
+- keep in mind the quality of information
 
 ## b2) Webgoat assigments.
 
@@ -141,7 +247,7 @@ After some trial and error and looking up, i figure out how to refer to a specif
 
 ![print of fields](/week-3/xss-fields.png)
 
-There isnt really a field to input the answers to this, and it isnt made very clear what is required to pass this. But the tracker box has turned green so Im calling it done.
+There isn't really a field to input the answers to this, and it isn't made very clear what is required to pass this. But the tracker box has turned green so Im calling it done.
 
 ## Sources
 
@@ -159,6 +265,6 @@ https://gist.github.com/subfuzion/08c5d85437d5d4f00e58
 
 https://developer.mozilla.org/en-US/docs/Web/API/Document/forms
 
+https://www.cpomagazine.com/cyber-security/toyota-subsidiary-loses-37-million-due-to-bec-scam/
 
-
-``` c ```
+https://en.wikipedia.org/wiki/Business_email_compromise
