@@ -1,4 +1,4 @@
-# Week 2
+# Week 3
 
 On last weeks lecture we had visitor Riku Juurikko giving a presentation on Social Engineering.
 
