@@ -73,6 +73,8 @@ I ran this into a virtual box host-only network with kali and metasploitable vir
 
 In the results 192.168.56.100 is the DHCP server, .101 is metasploitable, .102 is Kali and .1 is the adapter.
 
+The packages sent are just "Who has?" requests sent to all the IP-addresses in range. Most of the time used for the scan seems to be just waiting for responses.
+
 ### don't ping -Pn
 
 ![nmap-pn](/week-4/nmap-pn.png)
@@ -93,7 +95,6 @@ Retrying this against the metasploitable 2 machine gave more sensible results.
 
 ![nmap version detection](/week-4/nmap-sv2.png)
 
-The packages sent are just "Who has?" requests sent to all the IP-addresses in range. Most of the time used for the scan seems to be just waiting for responses.
 
 ## b) Nmap operations. Try the examples, explain results and purpose.
 
