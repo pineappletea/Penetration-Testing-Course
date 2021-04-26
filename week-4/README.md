@@ -151,13 +151,31 @@ There is a fair amount of http-requests that get replied with 400 or 404, i imag
 
 ## d) UDP scanning
 
-### What are the most common and interesting services you can find with UDP-scanning?
+### What are the most common and interesting services you can find with UDP-scanning
+
+Most common ones are DNS, SNMP, and DHCP. 
+
 ### Why is UDP scanning difficult and unreliable?
+
+There is no guarantee that you'll get a response from an open port, its rare to get a response. The result state of open|filtered means there was no response even after waiting, and nmap can't tell if the package was filtered by the firewall or simply wasn't responded to by the system. States "closed" and "filtered" are the results of error code responses. So in a way the logic is reverse to how TCP works: the responses you get are error codes and mean the ports are closed, not receiving an error means "there may be something here".
+
 ### Why should you use the --reason flag with UDP scanning?
+
+The reason flag adds a column to explain why nmap classified the port the way it did. This gives you additional information to work out whats happening.
 
 ## e) Open connection to the HackTheBox network and show that the connection is working.
 
+To open the connection Ive downloaded the .ovpn-file to connect to the VPN. I navigate to my downloads folder with ``` cd ~/Downloads``` I then open the connection with ```sudo openvpn lab_pineappletea.ovpn```. On the hackthebox website, i start the machine Armageddon and take down its IP address 10.10.10.233. To make sure the connection is right I run ``` ipcalc 10.10.10.233 ``` and get the private internet results I was looking for. 
+
+![ipcalc](/week-4/ipcalc.png)
+
+I open up my browser to http://10.10.10.233/ and see the Welcome to Armageddon page.
+
 ## f) Perform active recon on one of the HackTheBox machines. Analyze the results.
+
+Since the machine is still an active one on HackTheBox, this section is password protected.
+
+[Link](https://github.com/pineappletea/Penetration-Testing-Course/HackTheBox/)
 
 
 ## Sources
@@ -179,5 +197,8 @@ https://condor.depaul.edu/glancast/443class/docs/vbox_host-only_setup.html
 https://nmap.org/book/man-version-detection.html
 
 https://nmap.org/book/man-runtime-interaction.html
+
+https://nmap.org/book/scan-methods-udp-scan.html
+
 
 
