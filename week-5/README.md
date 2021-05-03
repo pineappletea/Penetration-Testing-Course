@@ -115,17 +115,10 @@ and throw in some messages to this chat session.
 
 ## b) Recon and analyze 5 HackTheBox machines.
 
-### Delivery 
-
-### ScriptKiddie
-
-### Spectra
-
-### Love
-
-### Ready
+[Link](https://www.protectedtext.com/ollinhtb)
 
 ## c) Name 1-3 walkthroughs in which services like the ones in section b) are exploited. 
+
 
 ## Sources
 
