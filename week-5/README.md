@@ -3,7 +3,7 @@
 
 ## z) Read three walkthrough articles and watch three walkthrough videos, take short notes.
 
-Wanted to include some Windows machines, haven't seen any exploits done on them yet.
+Wanted to include some Windows machines, haven't seen much on them yet.
 
 ### Articles
 
@@ -18,10 +18,27 @@ Wanted to include some Windows machines, haven't seen any exploits done on them 
 - zip2john, john
 - LXC exploit
 
+#### [HTB: Sauna(Windows) by 0xdf](https://0xdf.gitlab.io/2020/07/18/htb-sauna.html)
 
-#### [HTB: Sauna by 0xdf](https://0xdf.gitlab.io/2020/07/18/htb-sauna.html)
+- so many open ports on windows server
+- gobuster for directory brute force
+- smbmap
+- tried zone transfer with dig
+- kerbrute for brute forcing user names
+- GetNPUsers.py with the found usernames to look for vulnerable ones
+- hashcat to crack password from hash
+- registry has a winlogon page with default username and password
+- Evil-WinRM to create remote shell
+- secretsdump.py for a DCSync attack
 
-#### [HTB: Devel by 0xdf](https://0xdf.gitlab.io/2019/03/05/htb-devel.html)
+#### [HTB: Blocky by 0xdf](https://0xdf.gitlab.io/2020/06/30/htb-blocky.html)
+
+- open ports FTP (21), SSH (22) and HTTP (80) from nmap
+- gobuster to brute force directories
+- wpscan to scan for vulnerabilities in wordpress
+- opens .jar files with jd-gui
+- found the password in a Java class as sql password
+- logged in as user notch found with WPScan and the sql password, user was in sudo group
 
 ### Videos
 
@@ -63,7 +80,50 @@ Wanted to include some Windows machines, haven't seen any exploits done on them 
 
 ## a) Find and try 5 new tools from the walkthroughs.
 
+### gobuster
+
+Trying this against the Armageddon machine on HTB.
+
+``` sudo apt install gobuster ```
+
+``` gobuster dir --help ```
+
+``` gobuster dir -u http://10.10.10.233 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -o gobuster ```
+
+Turns out my search was a bit more thorough than I had hoped and I interrupt it at 11712/220561 searches.
+
+Still, it very quickly found a few results.
+
+![gobuster](/week-5/gobuster.png)
+
+### netcat
+
+Just going to try some real basics here.
+
+``` nc -l -p 1234 ```
+
+and in another terminal ``` nc localhost 1234 ```
+
+and throw in some messages to this chat session.
+
+![netcat localhost](/week-5/netcat.png)
+
+### wpscan
+
+### kerbrute
+
+
 ## b) Recon and analyze 5 HackTheBox machines.
+
+### Delivery 
+
+### ScriptKiddie
+
+### Spectra
+
+### Love
+
+### Ready
 
 ## c) Name 1-3 walkthroughs in which services like the ones in section b) are exploited. 
 
@@ -75,7 +135,7 @@ https://0xdf.gitlab.io/2020/11/07/htb-tabby.html
 
 https://0xdf.gitlab.io/2020/07/18/htb-sauna.html
 
-https://0xdf.gitlab.io/2019/03/05/htb-devel.html
+https://0xdf.gitlab.io/2020/06/30/htb-blocky.html
 
 https://www.youtube.com/watch?v=gDMGU3rdwfw&ab_channel=HackerSploit
 
@@ -84,3 +144,5 @@ https://www.youtube.com/watch?v=fkutK6kcDKY&ab_channel=IstantechGroup
 https://www.youtube.com/watch?v=IBlTdguhgfY&ab_channel=IppSec
 
 https://www.youtube.com/watch?v=aKShnpOXqn0&ab_channel=TomScott
+
+https://en.wikipedia.org/wiki/Kerberos_(protocol)
