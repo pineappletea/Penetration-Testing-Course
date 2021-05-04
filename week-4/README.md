@@ -175,7 +175,7 @@ I open up my browser to http://10.10.10.233/ and see the Welcome to Armageddon p
 
 Since the machine is still an active one on HackTheBox, this section is password protected.
 
-[Link](https://raw.githack.com/pineappletea/Penetration-Testing-Course/main/HackTheBox/index.html)
+[Link](https://www.protectedtext.com/ollinhtb)
 
 
 ## Sources
