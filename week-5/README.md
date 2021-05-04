@@ -110,14 +110,22 @@ and throw in some messages to this chat session.
 
 ### wpscan
 
-### kerbrute
+I did this to the Spectra machine on HackTheBox, so report is behind password [here](https://www.protectedtext.com/ollinhtb)
 
 
 ## b) Recon and analyze 5 HackTheBox machines.
 
-[Link](https://www.protectedtext.com/ollinhtb)
+HTB machines behind password [here](https://www.protectedtext.com/ollinhtb)
 
-## c) Name 1-3 walkthroughs in which services like the ones in section b) are exploited. 
+### ColddBox-easy from vulnhub
+
+This isnt an HTB machine, there were only 4 easy ones left that I hadnt looked at before.
+
+
+
+## c) Name 1-3 walkthroughs in which services like the ones in section b) are exploited.
+
+[Link](https://www.protectedtext.com/ollinhtb)
 
 
 ## Sources
@@ -139,3 +147,5 @@ https://www.youtube.com/watch?v=IBlTdguhgfY&ab_channel=IppSec
 https://www.youtube.com/watch?v=aKShnpOXqn0&ab_channel=TomScott
 
 https://en.wikipedia.org/wiki/Kerberos_(protocol)
+
+https://www.speedguide.net/port.php?port=5000
