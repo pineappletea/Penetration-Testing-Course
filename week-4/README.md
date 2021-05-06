@@ -35,7 +35,7 @@ Vulnerability scanners
 #### Port scanning basics
 
 - open: accepting connections
-- closed: port open but no application is listenijng
+- closed: port open but no application is listening
 - filtered: port cant be reached, usually blocked by firewall
 
 #### Port scanning techniques
@@ -199,6 +199,3 @@ https://nmap.org/book/man-version-detection.html
 https://nmap.org/book/man-runtime-interaction.html
 
 https://nmap.org/book/scan-methods-udp-scan.html
-
-
-
